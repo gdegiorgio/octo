@@ -3,6 +3,10 @@ all: build test
 build:
 	go build -o bin/octo cmd/octo/main.go
 
+
+install:
+	go mod tidy
+
 lint:
 	golangci-lint run ./...
 
