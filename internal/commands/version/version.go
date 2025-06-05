@@ -1,7 +1,6 @@
 package version
 
 import (
-	"fmt"
 	"os"
 	"github.com/spf13/cobra"
 )
@@ -14,9 +13,9 @@ func NewVersionCmd() (*cobra.Command){
 		Run: func(cmd *cobra.Command, args []string){
 			version := os.Getenv("OCTO_CLI_VERSION")
 			if version == "" {
-				version = "Unknown version."
+				version = "Unknown Version"
 			}
-			fmt.Println(version)
+			cmd.Println(version)
 		},
 	}
 }

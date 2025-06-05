@@ -5,3 +5,6 @@ build:
 
 run: build
 	./bin/octo
+
+test:
+	go test ./...
