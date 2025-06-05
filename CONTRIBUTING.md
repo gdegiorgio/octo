@@ -1,6 +1,6 @@
-# Contributing to Octo
+# Contributing to Octo 🐙
 
-Thanks for your interest in contributing to **Octo**, a cross-platform Homebrew alternative written in Go! 🎉
+Thanks for your interest in contributing to **Octo**! 🎉
 
 Please take a moment to review this guide. Following these standards helps us maintain a high-quality, consistent codebase and smooth review process.
 
