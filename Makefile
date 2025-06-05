@@ -1,7 +1,7 @@
 all: test build
 
 build:
-	go build -o bin/octo cmd/main.go
+	go build -o bin/octo cmd/octo/main.go
 
 run: build
 	./bin/octo

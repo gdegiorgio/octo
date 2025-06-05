@@ -1,10 +1,10 @@
 package main
 
 import (
-	"fmt"
+	"github.com/gdegiorgio/octo/internal/commands/root"
 )
 
 
 func main(){
-	fmt.Println(`Hello octo! 🐙`)
+	root.NewRootCmd().Execute()
 }
