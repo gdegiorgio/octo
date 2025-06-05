@@ -39,19 +39,19 @@ Please take a moment to review this guide. Following these standards helps us ma
 
   ### All commits must be signed
 
-    We require GPG or SSH signed commits.
+  We require GPG or SSH signed commits.
 
   ### Use conventional commits
 
-    This helps with automated changelogs and semantic versioning:
+  This helps with automated changelogs and semantic versioning:
 
-    ```
+  ```
     feat(cli): add install command for Linux
     fix(resolver): correct path resolution on Windows
     chore: update Go modules
-    ```
+  ```
 
-    Types allowed:
+  Types allowed:
 
     ```
         feat: New feature
@@ -68,23 +68,23 @@ Please take a moment to review this guide. Following these standards helps us ma
 
 We follow Semantic Versioning:
 
-    - MAJOR version when you make incompatible API changes
-    - MINOR version when you add functionality in a backward-compatible manner
-    - PATCH version when you make backward-compatible bug fixes
+  - MAJOR version when you make incompatible API changes
+  - MINOR version when you add functionality in a backward-compatible manner
+  - PATCH version when you make backward-compatible bug fixes
 
 Release tags and changelogs will be automatically generated based on commits.
 
 ## 📂 Pull Requests
 
-    Create a new branch for each contribution:
+  Create a new branch for each contribution:
 
   ```bash
     git checkout -b feat/some-feature
   ```
 
-    Ensure all tests pass and code is linted before submitting a PR.
-    Describe why the change is needed and what it does.
-    PR titles should use the same conventional commit format.
+  Ensure all tests pass and code is linted before submitting a PR.
+  Describe why the change is needed and what it does.
+  PR titles should use the same conventional commit format.
 
 ## 🤝 Code of Conduct
 
