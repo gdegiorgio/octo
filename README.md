@@ -8,7 +8,6 @@
 
 Octo is a cross-platform, fast, and minimal package manager inspired by [Homebrew](https://brew.sh), but built from the ground up in Go. It's designed for developers who want a universal, self-contained package management tool that just works across **macOS**, **Linux**, and **Windows**.
 
-![Octo mascot](./assets/octo.png)
 
 ---
 
@@ -49,5 +48,4 @@ octo list
 We welcome contributions of all kinds!
 
 - All PRs must follow Semantic Commit Messages
-- All commits must be signed (`git commit -S`)
 - Read our [Contributing guide](CONTRIBUTING.md) before submitting a PR

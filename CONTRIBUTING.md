@@ -37,10 +37,6 @@ Please take a moment to review this guide. Following these standards helps us ma
 
 ## ✅ Commit Guidelines
 
-  ### All commits must be signed
-
-  We require GPG or SSH signed commits.
-
   ### Use conventional commits
 
   This helps with automated changelogs and semantic versioning:
