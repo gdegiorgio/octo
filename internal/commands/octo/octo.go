@@ -11,13 +11,13 @@ func Main(){
 
 func newRootCmd() *cobra.Command{
 
-	root := &cobra.Command{
+	octo := &cobra.Command{
 		Use:   "octo <command> <subcommand> [flags]",
 		Short: "Octo CLI",
 		Long:  `🐙 Install your packages everywhere`,
 	}
 
-	root.AddCommand(version.NewVersionCmd())
+	octo.AddCommand(version.NewVersionCmd())
 
-	return root
+	return octo
 }
