@@ -1,0 +1,20 @@
+# Bin folder
+/bin
+
+# VS Code
+.vscode
+
+# Zed
+.zed
+
+# IntelliJ
+.idea
+
+# macOS
+.DS_Store
+
+# vim
+*.swp
+
+# Emacs
+*~

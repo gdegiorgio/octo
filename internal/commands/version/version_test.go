@@ -8,7 +8,7 @@ import (
 	"github.com/gdegiorgio/octo/utils"
 )
 
-func TestVersionCommand_MissingEnvVar(t *testing.T){
+func TestVersionCommand_MissingEnvVar(t *testing.T) {
 	cmd := NewVersionCmd()
 	output := utils.RunCommandAndCaptureOutput(cmd)
 	if strings.TrimSpace(output) != "Unknown Version" {
@@ -16,8 +16,11 @@ func TestVersionCommand_MissingEnvVar(t *testing.T){
 	}
 }
 
-func TestVersionCommand_EnvVarSet(t *testing.T){
-	os.Setenv("OCTO_CLI_VERSION", "v1.0.0")
+func TestVersionCommand_EnvVarSet(t *testing.T) {
+	err := os.Setenv("OCTO_CLI_VERSION", "v1.0.0")
+	if err != nil {
+		t.Errorf("Could not set env for tests : %v+", err)
+	}
 	cmd := NewVersionCmd()
 	output := utils.RunCommandAndCaptureOutput(cmd)
 	if strings.TrimSpace(output) != "v1.0.0" {

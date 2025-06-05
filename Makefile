@@ -1,7 +1,10 @@
-all: test build
+all: build test
 
 build:
 	go build -o bin/octo cmd/octo/main.go
+
+lint:
+	golangci-lint run ./...
 
 build-win-amd64:
 	set GOOS=windows

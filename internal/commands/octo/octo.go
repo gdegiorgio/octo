@@ -1,6 +1,8 @@
 package octo
 
 import (
+	"fmt"
+
 	"github.com/gdegiorgio/octo/internal/commands/install"
 	"github.com/gdegiorgio/octo/internal/commands/list"
 	"github.com/gdegiorgio/octo/internal/commands/version"
@@ -8,7 +10,10 @@ import (
 )
 
 func Main() {
-	newRootCmd().Execute()
+	err := newRootCmd().Execute()
+	if err != nil {
+		fmt.Println("Could not launch octo : %w", err)
+	}
 }
 
 func newRootCmd() *cobra.Command {
