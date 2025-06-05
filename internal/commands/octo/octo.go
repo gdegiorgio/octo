@@ -1,11 +1,15 @@
-package root
+package octo
 
 import (
 	"github.com/gdegiorgio/octo/internal/commands/version"
 	"github.com/spf13/cobra"
 )
 
-func NewRootCmd() *cobra.Command{
+func Main(){
+	newRootCmd().Execute()
+}
+
+func newRootCmd() *cobra.Command{
 
 	root := &cobra.Command{
 		Use:   "octo <command> <subcommand> [flags]",
