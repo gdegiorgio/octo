@@ -1,15 +1,17 @@
 package octo
 
 import (
+	"github.com/gdegiorgio/octo/internal/commands/install"
+	"github.com/gdegiorgio/octo/internal/commands/list"
 	"github.com/gdegiorgio/octo/internal/commands/version"
 	"github.com/spf13/cobra"
 )
 
-func Main(){
+func Main() {
 	newRootCmd().Execute()
 }
 
-func newRootCmd() *cobra.Command{
+func newRootCmd() *cobra.Command {
 
 	octo := &cobra.Command{
 		Use:   "octo <command> <subcommand> [flags]",
@@ -18,6 +20,8 @@ func newRootCmd() *cobra.Command{
 	}
 
 	octo.AddCommand(version.NewVersionCmd())
+	octo.AddCommand(install.NewInstallCmd())
+	octo.AddCommand(list.NewListCommand())
 
 	return octo
 }
