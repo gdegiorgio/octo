@@ -1,9 +1,6 @@
 name: Semantic Versioning
 
-on:
-  push:
-    branches:
-      - main
+on: [workflow_dispatch]
 
 jobs:
   release-tag:
