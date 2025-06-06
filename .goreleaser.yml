@@ -1,0 +1,32 @@
+version: 1
+
+project_name: octo
+dist: bin
+builds:
+  - id: octo
+    main: ./cmd/octo
+    goos:
+      - linux
+      - windows
+      - darwin
+    goarch:
+      - amd64
+      - arm64
+    ldflags:
+      - -s -w -X github.com/gdegiorgio/octo/internal/commands/version.Version={{.Version}}
+
+archives:
+  - id: default
+    builds: [octo]
+    format: tar.gz
+    name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+    files:
+      - LICENSE
+      - README.md
+
+release:
+  github:
+    owner: gdegiorgio
+    name: octo
+changelog:
+  use: git
