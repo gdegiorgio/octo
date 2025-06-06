@@ -5,6 +5,8 @@ import (
 
 	"github.com/gdegiorgio/octo/internal/commands/install"
 	"github.com/gdegiorgio/octo/internal/commands/list"
+	"github.com/gdegiorgio/octo/internal/commands/update"
+	"github.com/gdegiorgio/octo/internal/commands/upgrade"
 	"github.com/gdegiorgio/octo/internal/commands/version"
 	"github.com/spf13/cobra"
 )
@@ -27,6 +29,8 @@ func newRootCmd(octoVersion string) *cobra.Command {
 	octo.AddCommand(version.NewVersionCmd(octoVersion))
 	octo.AddCommand(install.NewInstallCmd())
 	octo.AddCommand(list.NewListCommand())
+	octo.AddCommand(update.NewUpdateCmd())
+	octo.AddCommand(upgrade.NewUpgradeCmd())
 
 	return octo
 }

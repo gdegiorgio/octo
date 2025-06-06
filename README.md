@@ -37,13 +37,25 @@ go build -o octo ./cmd/octo
 ./octo --help
 ```
 
-## 🧪 Example Usage
+## 🧪 Usage
 
 ```bash
-octo install bat
-octo upgrade bat
-octo remove bat
-octo list
+🐙 Install your packages everywhere
+
+Usage:
+  octo [command]
+
+Available Commands:
+  completion  Generate the autocompletion script for the specified shell
+  help        Help about any command
+  install     Install a new package
+  list        List all installed packages
+  update      Update a package to latest version
+  upgrade     Upgrade Octo CLI to latest version
+  version     Show current Octo CLI version
+
+Flags:
+  -h, --help   help for octo
 ```
 
 ## 🧙 Contributing

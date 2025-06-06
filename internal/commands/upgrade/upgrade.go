@@ -9,7 +9,7 @@ func NewUpgradeCmd() *cobra.Command {
 		Long:  "Upgrade Octo CLI to latest version",
 		Args:  cobra.NoArgs,
 		Run: func(cmd *cobra.Command, args []string) {
-			cmd.PrintErr("remove command is currently not implemented.")
+			cmd.PrintErr("upgrade command is currently not implemented.")
 		},
 	}
 }
