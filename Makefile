@@ -3,6 +3,11 @@ all: build test
 build:
 	go build -o bin/octo cmd/octo/main.go
 
+coverage:
+	go test -coverprofile=coverage.out ./...
+	go tool cover -func=coverage.out
+
+
 
 install:
 	go mod tidy
