@@ -21,7 +21,7 @@ archives:
     format: tar.gz
     name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
     files:
-      - LICENSE
+      - LICENSE.txt
       - README.md
 
 release:
