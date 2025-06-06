@@ -1,0 +1,35 @@
+name: 🐞 Bug Report
+description: Report something that isn't working
+title: "[BUG] <short description>"
+labels: [bug]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: Describe the problem, and what you expected to happen.
+      placeholder: e.g. Running `octo install` fails with "404"
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      placeholder: |
+        1. Run `octo install foo`
+        2. See error
+    validations:
+      required: false
+
+  - type: input
+    id: os
+    attributes:
+      label: OS and Architecture
+      placeholder: e.g. macOS 13.4 (arm64)
+
+  - type: input
+    id: version
+    attributes:
+      label: octo Version
+      placeholder: e.g. v0.1.0

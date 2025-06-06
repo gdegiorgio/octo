@@ -1,0 +1,20 @@
+name: 💡 Feature Request
+description: Suggest a new idea or enhancement
+title: "[FEAT] <short description>"
+labels: [enhancement]
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: What would you like to see?
+      description: Clearly describe the feature or command you'd like to have.
+    validations:
+      required: true
+
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Why is this useful?
+      description: Help others understand why this is important.
+    validations:
+      required: false
