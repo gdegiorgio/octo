@@ -1,0 +1,26 @@
+name: Semantic Versioning
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release-tag:
+    runs-on: ubuntu-latest
+    if: "startsWith(github.event.head_commit.message, 'feat') || startsWith(github.event.head_commit.message, 'fix')"
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: "0"
+
+      - name: Set safe git dir
+        run: |
+          git config --global --add safe.directory /github/workspace
+
+      - name: Tag repository
+        id: tagRepo
+        uses: anothrNick/github-tag-action@1.36.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          WITH_V: true
