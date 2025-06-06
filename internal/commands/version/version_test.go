@@ -8,9 +8,9 @@ import (
 )
 
 func TestVersionCommand_PrintCorrectVersion(t *testing.T) {
-	cmd := NewVersionCmd()
+	cmd := NewVersionCmd("testing")
 	output := utils.RunCommandAndCaptureOutput(cmd)
-	if strings.TrimSpace(output) != Version {
-		t.Errorf("Expected %s but got %s\n", Version, output)
+	if strings.TrimSpace(output) != "🐙 testing" {
+		t.Errorf("Expected testing but got %s\n", output)
 	}
 }

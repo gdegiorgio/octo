@@ -4,8 +4,9 @@ import (
 	"github.com/gdegiorgio/octo/internal/commands/octo"
 )
 
-var Version = "development"
+// set via ldflags
+var version = "development"
 
 func main() {
-	octo.Main()
+	octo.Main(version)
 }

@@ -9,14 +9,14 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func Main() {
-	err := newRootCmd().Execute()
+func Main(octoVersion string) {
+	err := newRootCmd(octoVersion).Execute()
 	if err != nil {
 		fmt.Println("Could not launch octo : %w", err)
 	}
 }
 
-func newRootCmd() *cobra.Command {
+func newRootCmd(octoVersion string) *cobra.Command {
 
 	octo := &cobra.Command{
 		Use:   "octo <command> <subcommand> [flags]",
@@ -24,7 +24,7 @@ func newRootCmd() *cobra.Command {
 		Long:  `🐙 Install your packages everywhere`,
 	}
 
-	octo.AddCommand(version.NewVersionCmd())
+	octo.AddCommand(version.NewVersionCmd(octoVersion))
 	octo.AddCommand(install.NewInstallCmd())
 	octo.AddCommand(list.NewListCommand())
 
