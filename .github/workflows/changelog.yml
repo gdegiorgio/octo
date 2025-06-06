@@ -6,9 +6,12 @@ on:
       - v[0-9]+.[0-9]+.[0-9]+
 
 concurrency: production
+
 jobs:
   create-changelog:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout Code
