@@ -8,7 +8,12 @@ import (
 	"github.com/gdegiorgio/octo/internal/commands/update"
 	"github.com/gdegiorgio/octo/internal/commands/upgrade"
 	"github.com/gdegiorgio/octo/internal/commands/version"
+	"github.com/gdegiorgio/octo/pkg/logger"
 	"github.com/spf13/cobra"
+)
+
+var (
+	Verbose bool
 )
 
 func Main(octoVersion string) {
@@ -31,6 +36,10 @@ func newRootCmd(octoVersion string) *cobra.Command {
 	octo.AddCommand(list.NewListCommand())
 	octo.AddCommand(update.NewUpdateCmd())
 	octo.AddCommand(upgrade.NewUpgradeCmd())
+
+
+	octo.PersistentFlags().BoolVarP(&logger.Verbose, "verbose", "v", false, "Enable verbose logging")
+
 
 	return octo
 }
