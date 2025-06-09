@@ -101,7 +101,11 @@ func TestError(t *testing.T){
 	Verbose = true
 
 	testCmd.Run = func(cmd *cobra.Command, args []string) {
-		Error(testCmd, "Test")
+		err := Error(testCmd, "Test")
+
+		if err != nil {
+			fmt.Print("Got an error during tests : %w", err)
+		}
 	}
 
 	out := utils.RunCommandAndCaptureOutput(testCmd)
