@@ -9,11 +9,13 @@ import (
 )
 
 var (
+	Verbose bool
+
+
 	Reset = "\033[0m"
  	Red = "\033[31m"
 	Yellow = "\033[33m"
 	Cyan = "\033[36m"
-	Verbose bool
 )
 
 
