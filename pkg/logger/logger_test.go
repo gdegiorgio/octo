@@ -1,117 +1,97 @@
 package logger
 
 import (
+	"bytes"
 	"fmt"
-	"io"
 	"testing"
 
-	"github.com/gdegiorgio/octo/utils"
 	"github.com/spf13/cobra"
 )
 
-
-
-
-
-var testCmd = &cobra.Command {
-	Use:  "test",
-	Long: "Used for testing",
+var testCmd = &cobra.Command{
+	Use:   "test",
+	Long:  "Used for testing",
 	Short: "Used for testing",
 }
 
+var logger = NewLogger(testCmd)
 
-func TestDebug_NoVerbose(t *testing.T){
-
-	var buf io.Writer
-
-	testCmd.SetOut(buf)
+func TestDebug_NoVerbose(t *testing.T) {
+	var buf bytes.Buffer
+	testCmd.SetOut(&buf)
 	Verbose = false
 
 	testCmd.Run = func(cmd *cobra.Command, args []string) {
-		Debug(testCmd, "Test")
+		logger.Debug("Test")
 	}
 
-	out := utils.RunCommandAndCaptureOutput(testCmd)
+	_ = testCmd.Execute()
 	expected := ""
-	if out != expected{
-		t.Errorf("Expected %s, found %s", expected, out )
+	if buf.String() != expected {
+		t.Errorf("Expected %q, found %q", expected, buf.String())
 	}
 }
 
-
-func TestDebug_Verbose(t *testing.T){
-
-	var buf io.Writer
-
-	testCmd.SetOut(buf)
+func TestDebug_Verbose(t *testing.T) {
+	var buf bytes.Buffer
+	testCmd.SetOut(&buf)
 	Verbose = true
 
 	testCmd.Run = func(cmd *cobra.Command, args []string) {
-		Debug(testCmd, "Test")
+		logger.Debug("Test")
 	}
 
-	out := utils.RunCommandAndCaptureOutput(testCmd)
+	_ = testCmd.Execute()
 	expected := "DEBUG Test\n"
-	if out != expected{
-		t.Errorf("Expected %s, found %s", expected, out )
-	}
-
-}
-func TestInfo(t *testing.T){
-	var buf io.Writer
-
-	testCmd.SetOut(buf)
-	Verbose = true
-
-	testCmd.Run = func(cmd *cobra.Command, args []string) {
-		Info(testCmd, "Test")
-	}
-
-	out := utils.RunCommandAndCaptureOutput(testCmd)
-	expected := fmt.Sprintf("%s INFO Test %s\n", Cyan, Reset)
-	if out != expected{
-		t.Errorf("Expected %s, found %s", expected, out )
-	}
-}
-func TestWarn(t *testing.T){
-
-	var buf io.Writer
-
-	testCmd.SetOut(buf)
-	Verbose = true
-
-	testCmd.Run = func(cmd *cobra.Command, args []string) {
-		Warn(testCmd, "Test")
-	}
-
-	out := utils.RunCommandAndCaptureOutput(testCmd)
-	expected := fmt.Sprintf("%s WARN Test %s\n", Yellow, Reset)
-
-	if out != expected{
-		t.Errorf("Expected %s, found %s", expected, out )
+	if buf.String() != expected {
+		t.Errorf("Expected %q, found %q", expected, buf.String())
 	}
 }
 
-func TestError(t *testing.T){
-
-	var buf io.Writer
-
-
-	testCmd.SetOut(buf)
+func TestInfo(t *testing.T) {
+	var buf bytes.Buffer
+	testCmd.SetOut(&buf)
 	Verbose = true
 
 	testCmd.Run = func(cmd *cobra.Command, args []string) {
-		err := Error(testCmd, "Test")
-
-		if err != nil {
-			fmt.Print("Got an error during tests : %w", err)
-		}
+		logger.Info("Test")
 	}
 
-	out := utils.RunCommandAndCaptureOutput(testCmd)
-	expected := fmt.Sprintf("%s ERR Test %s\n", Red, Reset)
+	_ = testCmd.Execute()
+	expected := fmt.Sprintf("%sINFO Test%s\n", Cyan, Reset)
+	if buf.String() != expected {
+		t.Errorf("Expected %q, found %q", expected, buf.String())
+	}
+}
 
-	if out != expected{
-		t.Errorf("Expected %s, found %s", expected, out )
+func TestWarn(t *testing.T) {
+	var buf bytes.Buffer
+	testCmd.SetOut(&buf)
+	Verbose = true
+
+	testCmd.Run = func(cmd *cobra.Command, args []string) {
+		logger.Warn("Test")
+	}
+
+	_ = testCmd.Execute()
+	expected := fmt.Sprintf("%sWARN Test%s\n", Yellow, Reset)
+	if buf.String() != expected {
+		t.Errorf("Expected %q, found %q", expected, buf.String())
+	}
+}
+
+func TestError(t *testing.T) {
+	var buf bytes.Buffer
+	testCmd.SetErr(&buf)
+	Verbose = true
+
+	testCmd.Run = func(cmd *cobra.Command, args []string) {
+		logger.Error("Test")
+	}
+
+	_ = testCmd.Execute()
+	expected := fmt.Sprintf("%sERR Test%s\n", Red, Reset)
+	if buf.String() != expected {
+		t.Errorf("Expected %q, found %q", expected, buf.String())
 	}
 }
