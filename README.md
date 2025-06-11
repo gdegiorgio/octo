@@ -28,7 +28,9 @@ Octo is a cross-platform, fast, and minimal package manager inspired by [Homebre
 
 ### Install
 
-> **Note**: Install script from Windows will coming soon.
+## Windows
+
+> **Note**: Install script for Windows will coming soon.
 
 ## MacOs & Linux
 
