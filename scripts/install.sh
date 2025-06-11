@@ -1,6 +1,7 @@
-#!/bin/bash
 
+#!/bin/bash
 OCTO_HOME=$HOME/.octo
+
 
 
 
@@ -23,6 +24,7 @@ install(){
   
     if [ $(uname -s) == "Darwin" ]; then
         OS="darwin"
+
     elif [ $(uname -s) == "Linux" ]; then
         OS="linux"
     else
@@ -62,8 +64,6 @@ install(){
         echo "Unsupported shell"
         return
     fi
-
-
 
 
     echo "Octo installed successfully, restart your shell or run $source_line to use it"

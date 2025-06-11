@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.2.4] - 2025-06-11
+### :sparkles: New Features
+- [`b926e48`](https://github.com/gdegiorgio/octo/commit/b926e4863c12032f1c4bf857281b7b32f62b24dc) - implement logger *(PR [#6](https://github.com/gdegiorgio/octo/pull/6) by [@gdegiorgio](https://github.com/gdegiorgio))*
+  - :arrow_lower_right: *addresses issue [#5](https://github.com/gdegiorgio/octo/issues/5) opened by [@gdegiorgio](https://github.com/gdegiorgio)*
+- [`2e6670e`](https://github.com/gdegiorgio/octo/commit/2e6670eee172c4019ad8a41d45764cb74c34289d) - rename binaries *(PR [#7](https://github.com/gdegiorgio/octo/pull/7) by [@gdegiorgio](https://github.com/gdegiorgio))*
+- [`4faffd3`](https://github.com/gdegiorgio/octo/commit/4faffd37f8874512d2764e916c573df03578d9e0) - create linux/macos install script *(PR [#8](https://github.com/gdegiorgio/octo/pull/8) by [@gdegiorgio](https://github.com/gdegiorgio))*
+  - :arrow_lower_right: *addresses issue [#3](https://github.com/gdegiorgio/octo/issues/3) opened by [@gdegiorgio](https://github.com/gdegiorgio)*
+
+
 ## [v0.2.3] - 2025-06-06
 ### :sparkles: New Features
 - [`fede5b7`](https://github.com/gdegiorgio/octo/commit/fede5b72c6e287826917677c68eace6773709ecf) - initialize `upgrade` command *(commit by [@gdegiorgio](https://github.com/gdegiorgio))*
@@ -16,3 +25,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 [v0.2.2]: https://github.com/gdegiorgio/octo/compare/v0.2.1...v0.2.2
 [v0.2.3]: https://github.com/gdegiorgio/octo/compare/v0.2.2...v0.2.3
+[v0.2.4]: https://github.com/gdegiorgio/octo/compare/v0.2.3...v0.2.4
