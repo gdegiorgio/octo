@@ -13,23 +13,27 @@ install(){
         return
     fi
 
-    if [ $(uname -m) == "x86_64" ]; then
+    
+    ARCH=""
+    MACHINE="$(uname -m)"
+
+    if [ "$MACHINE" = "x86_64" ]; then
         ARCH="amd64"
-    elif [ $(uname -m) == "aarch64" ]; then
+    elif [ "$MACHINE" = "aarch64" ] || [ "$MACHINE" = "arm64" ]; then
         ARCH="arm64"
     else
-        echo "Unsupported architecture"
-        return
+        echo "Unsupported architecture: $MACHINE"
+        return 1
     fi
-  
-    if [ $(uname -s) == "Darwin" ]; then
-        OS="darwin"
 
-    elif [ $(uname -s) == "Linux" ]; then
+    OS_NAME="$(uname -s)"
+    if [ "$OS_NAME" = "Darwin" ]; then
+        OS="darwin"
+    elif [ "$OS_NAME" = "Linux" ]; then
         OS="linux"
     else
-        echo "Unsupported OS"
-        return
+        echo "Unsupported OS: $OS_NAME"
+        return 1
     fi
 
     echo "Installing Octo for $OS $ARCH"
