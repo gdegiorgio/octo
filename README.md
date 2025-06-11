@@ -28,13 +28,12 @@ Octo is a cross-platform, fast, and minimal package manager inspired by [Homebre
 
 ### Install
 
-> **Note**: Precompiled binaries coming soon. For now, build from source.
+> **Note**: Install script from Windows will coming soon.
+
+## MacOs & Linux
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/octo.git
-cd octo
-go build -o octo ./cmd/octo
-./octo --help
+curl https://github.com/gdegiorgio/octo/blob/main/scripts/install.sh | bash
 ```
 
 ## 🧪 Usage
