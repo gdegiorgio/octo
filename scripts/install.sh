@@ -18,7 +18,6 @@ install(){
         return
     fi
 
-    # Check os architecture
     if [ $(uname -m) == "x86_64" ]; then
         ARCH="amd64"
     elif [ $(uname -m) == "aarch64" ]; then
@@ -27,9 +26,22 @@ install(){
         echo "Unsupported architecture"
         return
     fi
+  
+    if [ $(uname -s) == "Darwin" ]; then
+        OS="darwwin"
+    elif [ $(uname -s) == "Linux" ]; then
+        OS="linux"
+    else
+        echo "Unsupported OS"
+        return
+    fi
 
     mkdir -p $OCTO_HOME/bin
-    curl -L -o $OCTO_HOME/bin/octo https://github.com/gdegiorgio/octo/releases/latest/download/octo_linux_$ARCH
+    curl -L -o $OCTO_HOME/bin/octo_$OS_$ARCH.tar.gz https://github.com/gdegiorgio/octo/releases/latest/download/octo_$OS_$ARCH.tar.gz
+
+    tar -xzf $OCTO_HOME/bin/octo_$OS_$ARCH.tar.gz -C $OCTO_HOME/bin
+    rm $OCTO_HOME/bin/octo_$OS_$ARCH.tar.gz 
+
     chmod +x $OCTO_HOME/bin/octo
 
 
@@ -50,7 +62,6 @@ install(){
 
 
     echo "Octo installed successfully"
-
 
 }
 
