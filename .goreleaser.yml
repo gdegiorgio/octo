@@ -1,4 +1,4 @@
-version: 1
+version: 2
 
 project_name: octo
 dist: bin
@@ -7,8 +7,16 @@ builds:
     main: ./cmd/octo
     goos:
       - linux
-      - windows
       - darwin
+    goarch:
+      - amd64
+      - arm64
+    ldflags:
+      - -s -w -X main.version={{.Version}}
+  - id: octo-win
+    main: ./cmd/octo
+    goos:
+      - windows
     goarch:
       - amd64
       - arm64
@@ -17,8 +25,15 @@ builds:
 
 archives:
   - id: default
-    builds: [octo]
-    format: tar.gz
+    ids: [octo]
+    formats: [tar.gz]
+    name_template: "{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}"
+    files:
+      - LICENSE.txt
+      - README.md
+  - id: octo-win
+    ids: [octo-win]
+    formats: [zip]
     name_template: "{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}"
     files:
       - LICENSE.txt
