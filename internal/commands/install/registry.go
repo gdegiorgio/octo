@@ -39,3 +39,13 @@ func fetchPackageMetadata(url string) (*pkg.Package, error) {
 
 	return &pkg, nil
 }
+
+
+func retrievePlatformMetadata (pkg *pkg.Package, os string, arch string) (*pkg.Platform) {
+	for _, platform := range(pkg.Platforms){
+		if (platform.Arch == arch) && (platform.OS == os) {
+			return &platform
+		}
+	}
+	return nil
+}

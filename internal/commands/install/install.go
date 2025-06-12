@@ -59,8 +59,34 @@ func runInstall(cmd *cobra.Command, args []string) {
 
 	if err != nil {
 		log.Error(fmt.Sprintf("Unable to fetch %s metadata : %v", packageName, err))
+		return
 	}
 
 	log.Info(fmt.Sprintf("Package %s is available — proceeding with install...", pkg.Name))
+
+
+	platformMetadata := retrievePlatformMetadata(pkg, goos, goarch)
+
+	if platformMetadata == nil {
+		log.Info(fmt.Sprintf("Package %s is not compatible with %s/%s", packageName, goos, goarch))
+		return
+	}
+
+	if platformMetadata.Hooks.PreInstall != "" {
+		log.Info(fmt.Sprintf("Found a pre-install hook."))
+		runPreInstallHook()
+	}
+
+	err = downloadPackage(pkg)
+
+	if err != nil {
+		log.Error(fmt.Sprintf("Failed to download package %s : %v", packageName, err))
+		return
+	}
+
+	if platformMetadata.Hooks.PostInstall != "" {
+		log.Info(fmt.Sprintf("Found a post-install hook."))
+		runPostInstallHook()
+	}
 
 }
