@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.2.7] - 2025-06-12
+### :sparkles: New Features
+- [`47b3d32`](https://github.com/gdegiorgio/octo/commit/47b3d321b26eca4f0fe8dbcfc13f7dea17350b0e) - implement windows install script *(PR [#12](https://github.com/gdegiorgio/octo/pull/12) by [@gdegiorgio](https://github.com/gdegiorgio))*
+  - :arrow_lower_right: *addresses issue [#4](https://github.com/gdegiorgio/octo/issues/4) opened by [@gdegiorgio](https://github.com/gdegiorgio)*
+
+
 ## [v0.2.5] - 2025-06-12
 ### :sparkles: New Features
 - [`ba146b2`](https://github.com/gdegiorgio/octo/commit/ba146b2df5bea3bf6e4466c837a3182e6b1bace3) - upgrade gorelaser to v2; change win package to zip *(PR [#11](https://github.com/gdegiorgio/octo/pull/11) by [@gdegiorgio](https://github.com/gdegiorgio))*
@@ -36,3 +42,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [v0.2.3]: https://github.com/gdegiorgio/octo/compare/v0.2.2...v0.2.3
 [v0.2.4]: https://github.com/gdegiorgio/octo/compare/v0.2.3...v0.2.4
 [v0.2.5]: https://github.com/gdegiorgio/octo/compare/v0.2.4...v0.2.5
+[v0.2.7]: https://github.com/gdegiorgio/octo/compare/v0.2.6...v0.2.7
