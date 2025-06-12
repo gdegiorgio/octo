@@ -30,17 +30,16 @@ Octo is a cross-platform, fast, and minimal package manager inspired by [Homebre
 
 ## Windows
 
-
-```bash
-curl https://raw.githubusercontent.com/gdegiorgio/octo/refs/heads/main/scripts/install.sh | bash
+```
+powershell -c "irm https://raw.githubusercontent.com/gdegiorgio/octo/refs/heads/main/scripts/install.ps1 | iex"
 ```
 
 ## MacOs & Linux
 
 ```bash
-powershell -c "irm https://raw.githubusercontent.com/gdegiorgio/octo/refs/heads/main/scripts/install.ps1 | iex"
-
+curl https://raw.githubusercontent.com/gdegiorgio/octo/refs/heads/main/scripts/install.sh | bash
 ```
+
 
 ## 🧪 Usage
 
