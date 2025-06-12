@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"os"
 	"time"
 
 	"github.com/gdegiorgio/octo/internal/pkg"
@@ -40,12 +41,20 @@ func fetchPackageMetadata(url string) (*pkg.Package, error) {
 	return &pkg, nil
 }
 
-
-func retrievePlatformMetadata (pkg *pkg.Package, os string, arch string) (*pkg.Platform) {
-	for _, platform := range(pkg.Platforms){
+func retrievePlatformMetadata(pkg *pkg.Package, os string, arch string) *pkg.Platform {
+	for _, platform := range pkg.Platforms {
 		if (platform.Arch == arch) && (platform.OS == os) {
 			return &platform
 		}
+	}
+	return nil
+}
+
+func createPackageFolder(packageName string) error {
+	homeDir := os.Getenv("OCTO_HOME")
+	_, err := os.Stat(fmt.Sprintf("%s/packages/%s", homeDir, packageName))
+	if err != nil {
+		return os.Mkdir(fmt.Sprintf("%s/packages/%s", homeDir, packageName), 0777)
 	}
 	return nil
 }

@@ -9,10 +9,17 @@ import (
 )
 
 func downloadPackage(p *pkg.Package) error {
+
+	err := createPackageFolder(p.Name)
+
+	if err != nil {
+		return fmt.Errorf("Could not create package dir : %v", err)
+	}
+
 	bar := progressbar.Default(100, fmt.Sprintf("Downloading %s@%s", p.Name, p.Version))
-	for _ = range(100) {
-    	bar.Add(1)
-     	time.Sleep(40 * time.Millisecond)
+	for _ = range 100 {
+		bar.Add(1)
+		time.Sleep(40 * time.Millisecond)
 	}
 	return nil
 }
