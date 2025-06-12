@@ -35,7 +35,7 @@ Octo is a cross-platform, fast, and minimal package manager inspired by [Homebre
 ## MacOs & Linux
 
 ```bash
-curl https://github.com/gdegiorgio/octo/blob/main/scripts/install.sh | bash
+curl https://raw.githubusercontent.com/gdegiorgio/octo/refs/heads/main/scripts/install.sh | bash
 ```
 
 ## 🧪 Usage
