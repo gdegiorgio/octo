@@ -3,9 +3,7 @@
 
 
 
-> ⚠️ **Early Stage Project**
-
-
+> ⚠️ **Early Stage Project**  
 > Octo is under **active development** and not yet production-ready. Expect frequent changes, bugs, and missing features. Contributions are welcome as we build this together!
 
 
@@ -26,22 +24,21 @@ Octo is a cross-platform, fast, and minimal package manager inspired by [Homebre
 
 ## 🚀 Getting Started
 
-### Install
 
-## Windows
+#### Windows
 
 ```
 powershell -c "irm https://raw.githubusercontent.com/gdegiorgio/octo/refs/heads/main/scripts/install.ps1 | iex"
 ```
 
-## MacOs & Linux
+#### MacOs & Linux
 
 ```bash
 curl https://raw.githubusercontent.com/gdegiorgio/octo/refs/heads/main/scripts/install.sh | bash
 ```
 
 
-## 🧪 Usage
+### 🧪 Usage
 
 ```bash
 🐙 Install your packages everywhere
@@ -62,7 +59,7 @@ Flags:
   -h, --help   help for octo
 ```
 
-## 🧙 Contributing
+### 🧙 Contributing
 
 We welcome contributions of all kinds!
 
