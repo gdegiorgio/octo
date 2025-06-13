@@ -2,25 +2,62 @@ package install
 
 import (
 	"fmt"
-	"time"
+	"io"
+	"net/http"
+	"os"
+	"path"
+	"path/filepath"
 
 	"github.com/gdegiorgio/octo/internal/pkg"
 	"github.com/schollz/progressbar/v3"
 )
 
-func downloadPackage(p *pkg.Package) error {
+func downloadPackage(p *pkg.Package, platform *pkg.Platform) error {
 
-	err := createPackageFolder(p.Name)
+	packagePath, err := createPackageFolder(p.Name, p.Version)
 
 	if err != nil {
-		return fmt.Errorf("Could not create package dir : %v", err)
+		return fmt.Errorf("could not create package dir : %v", err)
 	}
 
-	bar := progressbar.Default(100, fmt.Sprintf("Downloading %s@%s", p.Name, p.Version))
-	for _ = range 100 {
-		bar.Add(1)
-		time.Sleep(40 * time.Millisecond)
+	downloadUrl := platform.URL
+	filename := path.Base(downloadUrl)
+	filePath := filepath.Join(packagePath, filename)
+
+	if err != nil {
+		return fmt.Errorf("invalid download url: %s", downloadUrl)
 	}
+
+	req, err := http.NewRequest("GET", downloadUrl, nil)
+
+	if err != nil {
+		return fmt.Errorf("could not make http request: %v", err)
+	}
+
+	resp, err := http.DefaultClient.Do(req)
+
+	if err != nil {
+		return fmt.Errorf("could not download package: %v", err)
+	}
+
+	defer resp.Body.Close()
+
+	f, _ := os.OpenFile(filePath, os.O_CREATE|os.O_WRONLY, 0644)
+	defer f.Close()
+
+	bar := progressbar.DefaultBytes(
+		resp.ContentLength,
+		fmt.Sprintf("Downloading %s@%s", p.Name, p.Version),
+	)
+
+	io.Copy(io.MultiWriter(f, bar), resp.Body)
+
+	err = unzipFile(filePath)
+
+	if err != nil {
+		return fmt.Errorf("could not extract package %s: %v", filePath, err)
+	}
+
 	return nil
 }
 

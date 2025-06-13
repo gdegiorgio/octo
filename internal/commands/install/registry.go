@@ -6,6 +6,7 @@ import (
 	"io"
 	"net/http"
 	"os"
+	"path/filepath"
 	"time"
 
 	"github.com/gdegiorgio/octo/internal/pkg"
@@ -50,11 +51,12 @@ func retrievePlatformMetadata(pkg *pkg.Package, os string, arch string) *pkg.Pla
 	return nil
 }
 
-func createPackageFolder(packageName string) error {
+func createPackageFolder(packageName string, version string) (string, error) {
 	homeDir := os.Getenv("OCTO_HOME")
-	_, err := os.Stat(fmt.Sprintf("%s/packages/%s", homeDir, packageName))
+	packagePath := filepath.Join(homeDir, "packages", packageName, version)
+	_, err := os.Stat(packagePath)
 	if err != nil {
-		return os.Mkdir(fmt.Sprintf("%s/packages/%s", homeDir, packageName), 0777)
+		os.MkdirAll(packagePath, 0777)
 	}
-	return nil
+	return packagePath, nil
 }

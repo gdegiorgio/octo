@@ -64,7 +64,6 @@ func runInstall(cmd *cobra.Command, args []string) {
 
 	log.Info(fmt.Sprintf("Package %s is available — proceeding with install...", pkg.Name))
 
-
 	platformMetadata := retrievePlatformMetadata(pkg, goos, goarch)
 
 	if platformMetadata == nil {
@@ -73,11 +72,10 @@ func runInstall(cmd *cobra.Command, args []string) {
 	}
 
 	if platformMetadata.Hooks.PreInstall != "" {
-		log.Info(fmt.Sprintf("Found a pre-install hook."))
-		runPreInstallHook()
+		log.Info("Found a pre-install hook")
 	}
 
-	err = downloadPackage(pkg)
+	err = downloadPackage(pkg, platformMetadata)
 
 	if err != nil {
 		log.Error(fmt.Sprintf("Failed to download package %s : %v", packageName, err))
@@ -85,8 +83,7 @@ func runInstall(cmd *cobra.Command, args []string) {
 	}
 
 	if platformMetadata.Hooks.PostInstall != "" {
-		log.Info(fmt.Sprintf("Found a post-install hook."))
-		runPostInstallHook()
+		log.Info("Found a post-install hook")
 	}
 
 }
