@@ -52,11 +52,20 @@ func downloadPackage(p *pkg.Package, platform *pkg.Platform) error {
 
 	io.Copy(io.MultiWriter(f, bar), resp.Body)
 
-	err = unzipFile(filePath)
+	if platform.Extract.Format == "zip" {
+		err = unzipFile(filePath)
+	} else if platform.Extract.Format == "tar" {
+		err = untarFile(filePath)
+	}
+	if err != nil {
+		return fmt.Errorf("could not extract package %s: %v", filePath, err)
+	}
 
 	if err != nil {
 		return fmt.Errorf("could not extract package %s: %v", filePath, err)
 	}
+
+	// TODO  Copy in $OCTO_HOME/bin
 
 	return nil
 }

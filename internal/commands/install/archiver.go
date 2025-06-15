@@ -1,6 +1,7 @@
 package install
 
 import (
+	"archive/tar"
 	"archive/zip"
 	"fmt"
 	"io"
@@ -53,6 +54,61 @@ func unzipFile(fp string) error {
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func untarFile(fp string) error {
+
+	f, err := os.Open(fp)
+	if err != nil {
+		return fmt.Errorf("could not open tar file: %v", err)
+	}
+	defer f.Close()
+
+	r := tar.NewReader(f)
+	if err != nil {
+		return err
+	}
+
+	for {
+		header, err := r.Next()
+
+		if err == io.EOF {
+			break
+		}
+		if err != nil {
+			return fmt.Errorf("could not read tar file: %v", err)
+		}
+
+		bar := progressbar.DefaultBytes(
+			header.Size,
+			fmt.Sprintf("Extracting %s", header.Name),
+		)
+
+		newFilePath := filepath.Join(filepath.Dir(fp), header.Name)
+
+		if header.Typeflag == tar.TypeDir {
+			err = os.MkdirAll(newFilePath, 0777)
+			if err != nil {
+				return fmt.Errorf("cannot extract internal dirs: %v", err)
+			}
+			continue
+		}
+
+		uncompressedFile, err := os.Create(newFilePath)
+		if err != nil {
+			return fmt.Errorf("cannot extract files: %v", err)
+		}
+
+		n, err := io.Copy(uncompressedFile, r)
+		if err != nil {
+			return fmt.Errorf("cannot extract files: %v", err)
+		}
+
+		bar.Add(int(n))
+		uncompressedFile.Close()
 	}
 
 	return nil
