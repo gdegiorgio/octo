@@ -54,15 +54,18 @@ func downloadPackage(p *pkg.Package, platform *pkg.Platform) error {
 
 	if platform.Extract.Format == "zip" {
 		err = unzipFile(filePath)
-	} else if platform.Extract.Format == "tar" {
+	} else if platform.Extract.Format == "tar.gz" {
 		err = untarFile(filePath)
-	}
-	if err != nil {
-		return fmt.Errorf("could not extract package %s: %v", filePath, err)
+	} else {
+		return fmt.Errorf("unknown archive format: %s", platform.Extract.Format)
 	}
 
 	if err != nil {
-		return fmt.Errorf("could not extract package %s: %v", filePath, err)
+		return fmt.Errorf("could not extract package %s: %v\n", filePath, err)
+	}
+
+	if err != nil {
+		return fmt.Errorf("could not extract package %s: %v\n", filePath, err)
 	}
 
 	// TODO  Copy in $OCTO_HOME/bin
